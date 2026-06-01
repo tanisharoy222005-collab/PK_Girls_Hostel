@@ -2,40 +2,40 @@ CREATE DATABASE pk_girls_hostel;
 
 USE pk_girls_hostel;
 
-CREATE TABLE registrations (
+CREATE TABLE registrations(
 
-    id INT AUTO_INCREMENT PRIMARY KEY,
+id INT AUTO_INCREMENT PRIMARY KEY,
 
-    full_name VARCHAR(100) NOT NULL,
+name VARCHAR(100),
 
-    phone VARCHAR(20) NOT NULL,
+phone VARCHAR(20),
 
-    email VARCHAR(100),
+email VARCHAR(100),
 
-    room_type VARCHAR(50),
+room_type VARCHAR(50),
 
-    college_workplace VARCHAR(150),
+college VARCHAR(100),
 
-    guardian_name VARCHAR(100),
+guardian_name VARCHAR(100),
 
-    guardian_contact VARCHAR(20),
+guardian_contact VARCHAR(20),
 
-    message TEXT,
+message TEXT,
 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
 
-CREATE TABLE reviews (
+CREATE TABLE reviews(
 
-    id INT AUTO_INCREMENT PRIMARY KEY,
+id INT AUTO_INCREMENT PRIMARY KEY,
 
-    name VARCHAR(100) NOT NULL,
+name VARCHAR(100),
 
-    rating INT NOT NULL,
+rating INT,
 
-    review_text TEXT NOT NULL,
+review TEXT,
 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 );
