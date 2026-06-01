@@ -1,0 +1,749 @@
+```css
+/* =========================
+   GOOGLE FONT RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#F8F5F2;
+    color:#2D2D2D;
+    overflow-x:hidden;
+}
+
+/* =========================
+   ROOT VARIABLES
+========================= */
+
+:root{
+
+    --primary:#C9A9A6;
+    --primary-dark:#B89491;
+
+    --gold:#B89B72;
+
+    --bg:#F8F5F2;
+    --white:#ffffff;
+
+    --marble:#EFE8E1;
+
+    --text:#2D2D2D;
+    --text-light:#666666;
+
+    --shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+    --radius:18px;
+
+    --container:1200px;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+
+.container{
+    width:min(1200px,90%);
+    margin:auto;
+}
+
+.section{
+    padding:100px 0;
+}
+
+.section-title{
+
+    text-align:center;
+    font-size:2.7rem;
+    font-weight:700;
+
+    margin-bottom:60px;
+
+    position:relative;
+}
+
+.section-title::after{
+
+    content:"";
+
+    width:90px;
+    height:4px;
+
+    background:var(--gold);
+
+    display:block;
+
+    margin:15px auto;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+}
+
+ul{
+    list-style:none;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.header{
+
+    position:fixed;
+
+    width:100%;
+
+    top:0;
+    left:0;
+
+    z-index:1000;
+
+    backdrop-filter:blur(15px);
+
+    background:
+    rgba(255,255,255,.75);
+
+    border-bottom:
+    1px solid rgba(255,255,255,.4);
+}
+
+.navbar{
+
+    height:85px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.logo img{
+
+    height:60px;
+    width:auto;
+}
+
+.nav-links{
+
+    display:flex;
+    gap:35px;
+}
+
+.nav-links a{
+
+    color:var(--text);
+
+    font-weight:500;
+
+    transition:.3s;
+}
+
+.nav-links a:hover{
+
+    color:var(--primary);
+}
+
+.hamburger{
+
+    display:none;
+
+    background:none;
+    border:none;
+
+    font-size:1.5rem;
+
+    cursor:pointer;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    position:relative;
+
+    height:100vh;
+
+    overflow:hidden;
+}
+
+.slide{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:0;
+
+    transition:opacity 1.5s ease;
+
+    background-size:cover;
+    background-position:center;
+}
+
+.slide.active{
+    opacity:1;
+}
+
+.slide:nth-child(1){
+    background-image:url('../assets/hostel-building.jpg');
+}
+
+.slide:nth-child(2){
+    background-image:url('../assets/room-double.jpg');
+}
+
+.slide:nth-child(3){
+    background-image:url('../assets/room-triple-1.jpg');
+}
+
+.hero-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.45)
+    );
+}
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    color:white;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    max-width:750px;
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    background:
+    rgba(255,255,255,.15);
+
+    padding:10px 20px;
+
+    border-radius:30px;
+
+    margin-bottom:20px;
+
+    backdrop-filter:blur(10px);
+}
+
+.hero h1{
+
+    font-size:4.2rem;
+
+    line-height:1.1;
+
+    margin-bottom:20px;
+
+    animation:fadeUp 1s ease;
+}
+
+.hero p{
+
+    font-size:1.2rem;
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+    animation:fadeUp 1.4s ease;
+}
+
+.hero-buttons{
+
+    display:flex;
+    gap:15px;
+}
+
+.btn{
+
+    padding:15px 30px;
+
+    border-radius:40px;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:white;
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-3px);
+}
+
+.btn-secondary{
+
+    border:2px solid white;
+
+    color:white;
+}
+
+.btn-secondary:hover{
+
+    background:white;
+
+    color:black;
+}
+
+.changing-text{
+
+    margin-bottom:25px;
+
+    font-size:1.1rem;
+
+    color:#fff;
+
+    font-weight:600;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+
+    margin-top:-70px;
+
+    position:relative;
+
+    z-index:10;
+}
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:20px;
+}
+
+.stat-card{
+
+    background:white;
+
+    border-radius:var(--radius);
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+}
+
+.stat-card h3{
+
+    font-size:2rem;
+
+    color:var(--primary);
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:60px;
+
+    align-items:center;
+}
+
+.about-image img{
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+}
+
+.about-content h2{
+
+    font-size:2.5rem;
+
+    margin-bottom:20px;
+}
+
+.about-content p{
+
+    margin-bottom:15px;
+
+    color:var(--text-light);
+
+    line-height:1.8;
+}
+
+/* =========================
+   ROOMS
+========================= */
+
+.room-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+}
+
+.room-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    transition:.4s;
+}
+
+.room-card:hover{
+
+    transform:
+    translateY(-10px);
+}
+
+.room-content{
+
+    padding:25px;
+}
+
+.room-content h3{
+
+    margin-bottom:15px;
+}
+
+.room-content ul li{
+
+    padding:8px 0;
+
+    color:var(--text-light);
+}
+
+/* =========================
+   AMENITIES
+========================= */
+
+.amenities-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:25px;
+}
+
+.amenity-card{
+
+    background:white;
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+}
+
+.amenity-card:hover{
+
+    transform:translateY(-8px);
+}
+
+.amenity-card i{
+
+    font-size:2rem;
+
+    color:var(--gold);
+
+    margin-bottom:15px;
+}
+
+/* =========================
+   FOOD GALLERY
+========================= */
+
+.food-gallery{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+}
+
+.food-gallery img{
+
+    border-radius:20px;
+
+    height:400px;
+
+    object-fit:cover;
+
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   TIMINGS
+========================= */
+
+.timings-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.timing-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   REVIEWS
+========================= */
+
+.review-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:25px;
+}
+
+.review-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   FORM
+========================= */
+
+.registration-form{
+
+    max-width:700px;
+
+    margin:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.registration-form input,
+.registration-form select,
+.registration-form textarea{
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:white;
+
+    box-shadow:var(--shadow);
+
+    font-family:inherit;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:40px;
+}
+
+iframe{
+
+    width:100%;
+    height:350px;
+
+    border:none;
+
+    border-radius:20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    background:#2D2D2D;
+
+    color:white;
+
+    text-align:center;
+
+    padding:40px 20px;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(40px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:992px){
+
+    .about-grid,
+    .contact-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .review-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .food-gallery{
+
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:768px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hamburger{
+        display:block;
+    }
+
+    .hero h1{
+
+        font-size:2.8rem;
+    }
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .timings-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+    }
+}
+```
