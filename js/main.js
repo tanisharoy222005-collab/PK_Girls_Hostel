@@ -1,168 +1,165 @@
-// ===========================
-// HERO IMAGE SLIDER
-// ===========================
+/* ===============================
+   main.js - Complete Script
+   =============================== */
 
-const slides = document.querySelectorAll(".slide");
+/* -------------------------------
+   DOM Elements
+--------------------------------*/
+const navbar = document.querySelector(".navbar");
+const navLinks = document.querySelectorAll(".nav-link");
+const sections = document.querySelectorAll("section");
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+const backToTop = document.querySelector(".back-to-top");
+
+const heroTitle = document.querySelector(".hero-title");
+const heroSubtitle = document.querySelector(".hero-subtitle");
+const heroSection = document.querySelector(".hero");
+
+/* -------------------------------
+   Hero Slider Data
+--------------------------------*/
+const heroSlides = [
+  {
+    title: "Build Modern Experiences",
+    subtitle: "Clean. Fast. Responsive Web Design."
+  },
+  {
+    title: "Design That Speaks",
+    subtitle: "User-first interfaces that convert."
+  },
+  {
+    title: "Performance Matters",
+    subtitle: "Optimized websites for real-world impact."
+  }
+];
 
 let currentSlide = 0;
 
-function showSlide(index) {
+/* -------------------------------
+   Hero Slider Function
+--------------------------------*/
+function updateHeroSlide() {
+  if (!heroTitle || !heroSubtitle) return;
 
-    slides.forEach(slide => {
-        slide.classList.remove("active");
-    });
+  heroTitle.style.opacity = 0;
+  heroSubtitle.style.opacity = 0;
 
-    slides[index].classList.add("active");
+  setTimeout(() => {
+    heroTitle.textContent = heroSlides[currentSlide].title;
+    heroSubtitle.textContent = heroSlides[currentSlide].subtitle;
+
+    heroTitle.style.opacity = 1;
+    heroSubtitle.style.opacity = 1;
+  }, 300);
+
+  currentSlide = (currentSlide + 1) % heroSlides.length;
 }
 
-setInterval(() => {
+/* Auto slide every 4 seconds */
+setInterval(updateHeroSlide, 4000);
 
-    currentSlide++;
+/* -------------------------------
+   Sticky Navbar on Scroll
+--------------------------------*/
+function handleStickyNavbar() {
+  if (window.scrollY > 50) {
+    navbar.classList.add("sticky");
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
 
-    if (currentSlide >= slides.length) {
+/* -------------------------------
+   Active Navbar Highlight
+--------------------------------*/
+function updateActiveNav() {
+  let scrollPos = window.scrollY + 100;
 
-        currentSlide = 0;
-    }
+  sections.forEach((section) => {
+    if (!section.id) return;
 
-    showSlide(currentSlide);
-
-}, 5000);
-
-// ===========================
-// HERO MOVING TEXT
-// ===========================
-
-const dynamicText =
-document.getElementById("dynamic-text");
-
-const phrases = [
-
-    "24/7 Security",
-    "Healthy Home-Style Meals",
-    "Comfortable Rooms",
-    "WiFi & Power Backup",
-    "Safe For Students",
-    "Prime Ranchi Location"
-
-];
-
-let phraseIndex = 0;
-
-setInterval(() => {
-
-    phraseIndex++;
-
-    if (phraseIndex >= phrases.length) {
-
-        phraseIndex = 0;
-    }
-
-    dynamicText.textContent =
-    phrases[phraseIndex];
-
-}, 2500);
-
-// ===========================
-// STICKY NAVBAR
-// ===========================
-
-const header =
-document.querySelector(".header");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 50) {
-
-        header.classList.add("scrolled");
-
-    } else {
-
-        header.classList.remove("scrolled");
-    }
-
-});
-
-// ===========================
-// MOBILE MENU
-// ===========================
-
-const hamburger =
-document.querySelector(".hamburger");
-
-const navLinks =
-document.querySelector(".nav-links");
-
-hamburger.addEventListener("click", () => {
-
-    navLinks.classList.toggle("mobile-active");
-
-});
-
-// ===========================
-// SCROLL ANIMATION
-// ===========================
-
-const observer =
-new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("show");
+    if (
+      scrollPos >= section.offsetTop &&
+      scrollPos < section.offsetTop + section.offsetHeight
+    ) {
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${section.id}`) {
+          link.classList.add("active");
         }
-
-    });
-
-});
-
-document.querySelectorAll(
-".section,.room-card,.menu-card,.amenity-card,.stat-card"
-).forEach(el => {
-
-    el.classList.add("hidden");
-
-    observer.observe(el);
-
-});
-
-// ===========================
-// BACK TO TOP BUTTON
-// ===========================
-
-const backToTop =
-document.createElement("button");
-
-backToTop.innerHTML =
-"↑";
-
-backToTop.className =
-"back-to-top";
-
-document.body.appendChild(backToTop);
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 500) {
-
-        backToTop.style.opacity = "1";
-        backToTop.style.visibility = "visible";
-
-    } else {
-
-        backToTop.style.opacity = "0";
-        backToTop.style.visibility = "hidden";
+      });
     }
+  });
+}
 
+/* -------------------------------
+   Mobile Menu Toggle
+--------------------------------*/
+function toggleMobileMenu() {
+  navMenu.classList.toggle("active");
+  hamburger.classList.toggle("active");
+}
+
+/* Close menu on link click */
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("active");
+    hamburger.classList.remove("active");
+  });
 });
 
-backToTop.addEventListener("click", () => {
+/* -------------------------------
+   Scroll Animations (Fade-in)
+--------------------------------*/
+function revealOnScroll() {
+  const revealElements = document.querySelectorAll(".reveal");
 
-    window.scrollTo({
+  revealElements.forEach((el) => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    const elementVisible = 150;
 
-        top: 0,
-        behavior: "smooth"
+    if (elementTop < windowHeight - elementVisible) {
+      el.classList.add("active");
+    }
+  });
+}
 
-    });
+/* -------------------------------
+   Back to Top Button
+--------------------------------*/
+function handleBackToTop() {
+  if (window.scrollY > 300) {
+    backToTop.classList.add("show");
+  } else {
+    backToTop.classList.remove("show");
+  }
+}
 
+backToTop?.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+/* -------------------------------
+   Event Listeners
+--------------------------------*/
+window.addEventListener("scroll", () => {
+  handleStickyNavbar();
+  updateActiveNav();
+  revealOnScroll();
+  handleBackToTop();
+});
+
+hamburger?.addEventListener("click", toggleMobileMenu);
+
+/* -------------------------------
+   Initial Trigger
+--------------------------------*/
+document.addEventListener("DOMContentLoaded", () => {
+  updateHeroSlide();
+  revealOnScroll();
 });
