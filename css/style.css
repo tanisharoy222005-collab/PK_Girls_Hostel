@@ -541,60 +541,50 @@ a{
 /* ==========================
    REVIEWS
 ========================== */
-
-.review-grid{
-
+.review-form {
+    max-width:700px;
+    margin:auto;
     display:grid;
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(300px,1fr));
-
-    gap:25px;
+    gap:18px;
 }
 
-.review-card{
+.review-form input,
+.review-form textarea,
+.review-form select {
+    width:100%;
+    padding:16px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-family:inherit;
+}
 
-    background:white;
-
-    padding:25px;
-
-    border-radius:var(--radius);
-
-    box-shadow:var(--shadow);
+.review-form button {
+    border:none;
+    cursor:pointer;
 }
 
 /* ==========================
    FORMS
 ========================== */
 
-.registration-form{
-
+.register-form {
     max-width:700px;
-
     margin:auto;
-
     display:grid;
-
     gap:18px;
 }
 
-.registration-form input,
-.registration-form textarea,
-.registration-form select{
-
+.register-form input,
+.register-form textarea,
+.register-form select {
     width:100%;
-
     padding:16px;
-
     border:1px solid #ddd;
-
     border-radius:12px;
-
     font-family:inherit;
 }
 
-.registration-form button{
-
+.register-form button {
     border:none;
     cursor:pointer;
 }
